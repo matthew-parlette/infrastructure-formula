@@ -1,0 +1,25 @@
+# -*- coding: utf-8 -*-
+# vim: ft=jinja
+
+{## Start with  defaults from defaults.sls ##}
+{% import_yaml 'slate/defaults.yaml' as default_settings %}
+
+{% set os_family_map = salt['grains.filter_by']({
+        'Debian': {},
+        'Suse': {},
+        'Arch': {},
+        'RedHat': {},
+  }
+  , grain="os_family"
+  , merge=salt['pillar.get']('slate:lookup'))
+%}
+{## Merge the flavor_map to the default settings ##}
+{% do default_settings.slate.update(os_family_map) %}
+
+{## Merge in template:lookup pillar ##}
+{% set slate = salt['pillar.get'](
+        'slate',
+        default=default_settings.slate,
+        merge=True
+    )
+%}

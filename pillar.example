@@ -6,3 +6,12 @@ ask:
   data_path: /path/to/data/dir
   # port to use on host
   port: 8002
+
+slate:
+  lookup:
+    image: user/some-docker-image
+    name: my-container-name
+  
+  data_path: /path/to/data/dir
+  # port to use on host
+  port: 8004
