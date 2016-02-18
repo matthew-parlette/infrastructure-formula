@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 slate:
-  image: mattparlette/slate
+  image: mattparlette/docker-slate
   name: slate
